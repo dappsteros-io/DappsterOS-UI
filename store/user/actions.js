@@ -12,11 +12,15 @@ export const setRefreshToken = createAction("user/setRefreshToken", (token) => {
         payload:token
     }
 }); 
+export const getStatus = createAsyncThunk("user/status", async () => {
+    return users.getUserStatus();
+});
+ 
+
 export const logIn = createAsyncThunk("user/login", async ({username, password}) => {
     return users.login(username, password);
 });
  
-
 export const logOut = createAction("user/logOut"); 
 
 export const signUp = createAsyncThunk("user/register", async ({username, password, key}) => {

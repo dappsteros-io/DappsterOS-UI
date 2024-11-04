@@ -5,7 +5,7 @@
   "homepage": "https://dappster.io/",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node message_bus.build.js && next build",
     "start": "next start",
     "export": "next export"
   },
