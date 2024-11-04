@@ -52,7 +52,7 @@ jobs:
     - name: 'Update release'
       uses: zhanghengxin/git-release-private@ice
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.API_TOKEN_GITHUB2 }}
         allow_override: true
         gzip: false
         prerelease: true
