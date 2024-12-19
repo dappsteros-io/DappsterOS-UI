@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Clock from "../util_components/clock";
 import { useDispatch, useSelector } from "react-redux";
-import { getStatus, logIn, signUp } from "@/store/user/actions"; 
+import { getStatus, logIn, signUp } from "@/store/user/actions";
 export default function LockScreen(props) {
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -15,7 +15,7 @@ export default function LockScreen(props) {
     dispatch(getStatus()).then((res) => {
       const data = res.payload.data;
       setLogin(data.initialized);
-      setKey(data.key)
+      setKey(data.key);
     });
   }, []);
 
@@ -27,7 +27,10 @@ export default function LockScreen(props) {
         if (isLogin) {
           dispatch(logIn({ username, password })).then((res) => {
             if (res.payload) {
-              if (res.payload.success == 200) {
+              if (
+                res.payload.success == 200 &&
+                res.payload.data.user.username
+              ) {
                 props.unLockScreen();
               }
             } else {
@@ -38,9 +41,9 @@ export default function LockScreen(props) {
           });
         } else {
           const password2 = password2Ref.current.value;
-          dispatch(signUp({ username, password, password2, key: "" })).then(
-            (res) => {}
-          );
+          dispatch(
+            signUp({ username, password, password2, key: initKey })
+          ).then((res) => {});
         }
       }
     }
@@ -101,7 +104,9 @@ export default function LockScreen(props) {
           </div>
         ) : (
           <div className=" mt-16 text-base flex flex-col text-center bg-gray-500 bg-opacity-50 p-10 rounded-lg">
-            <h1 className="text-white shadow-black text-2xl">Welcome to DappsterOS!</h1>
+            <h1 className="text-white shadow-black text-2xl">
+              Welcome to DappsterOS!
+            </h1>
             <input
               className="outline-none mt-5 px-1 context-menu-bg border-2 border-gray-400 border-opacity-5 rounded py-0.5"
               id="username"
@@ -137,7 +142,7 @@ export default function LockScreen(props) {
             />
             {err ? <label className="text-yellow-700 mt-4">{err}</label> : ""}
           </div>
-        )} 
+        )}
       </div>
     </div>
   );
