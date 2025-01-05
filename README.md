@@ -6,7 +6,7 @@ Open-Source Ecosystem Designed For You.
 
  
 
-### Check out a live demo of Dappster at www.dapster.io 
+### Check out a live demo of Dappster at www.dappster.io 
 
 
 - DappStore is preloaded with 1000's Apps & Dapps for you to use
